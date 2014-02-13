@@ -1,0 +1,22 @@
+!!! 5
+%head
+  %title Tasks
+  = stylesheet_link_tag    "application", media: "all"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+%body
+  %nav.navbar.navbar-default{role: 'navigation'}
+    .container-fluid
+      =link_to 'Tasks', root_url, class: 'navbar-brand'
+      %ul.nav.navbar-nav.navbar-right
+        - if current_user && current_user.is_admin?
+          = render partial: 'admin_menu'
+        = render partial: 'login_items'
+  .container
+    - flash.each do |type, message|
+      - unless message.blank?
+        = content_tag :div, message, class: "alert #{ bootstrap_class_for(type) }" do
+          %button{class: 'close', data:{dismiss:'alert'}} x
+          = message
+    = yield
+
