@@ -9,8 +9,10 @@
     .container-fluid
       =link_to 'Tasks', root_url, class: 'navbar-brand'
       %ul.nav.navbar-nav.navbar-right
-        - if current_user && current_user.is_admin?
-          = render partial: 'admin_menu'
+        - if current_user
+          = render partial: 'user_menu'
+          - if current_user.is_admin?
+            = render partial: 'admin_menu'
         = render partial: 'login_items'
   .container
     - flash.each do |type, message|

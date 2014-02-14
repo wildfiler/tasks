@@ -2,6 +2,7 @@ Tasks::Application.routes.draw do
 
   devise_for :users, path: 'auth'
   resources :users
+  resources :tasks
 
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.

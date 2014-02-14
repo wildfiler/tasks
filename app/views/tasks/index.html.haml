@@ -1,0 +1,15 @@
+.page-header
+  %h1 Список задач
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-2 Дата создания
+      %th.col-sm-10 Наименование
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %td=l task.created_at, format: :short
+        %td=link_to task.title, task_path(task)
+=link_to new_task_path, class: 'btn btn-default' do
+  %span.glyphicon.glyphicon-plus
+  Добавить задачу
