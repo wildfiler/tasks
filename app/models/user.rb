@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   def own_projects
     self.projects.where(projects:{owner_id: self.id})
   end
+
+  def anothers_projects
+    self.projects.where.not(projects:{owner_id: self.id})
+  end
 end

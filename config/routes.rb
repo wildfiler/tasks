@@ -3,7 +3,10 @@ Tasks::Application.routes.draw do
   devise_for :users, path: 'auth'
   resources :users
   resources :tasks
-
+  resources :projects do
+    post 'add_user'
+    delete 'delete_user/:id', action: 'delete_user', as: 'delete_user'
+  end
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

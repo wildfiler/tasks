@@ -1,0 +1,21 @@
+.page-header
+  %h1 Проекты
+%p
+  - if @own_projects.size > 0
+    %ul
+      - @own_projects.each do |project|
+        %li
+          =link_to project.title, project_path(project)
+  - else
+    У вас все еще нет своих проектов
+- if @projects.size > 0
+  %p
+    %h4 Проекты в которых принимаете участие:
+    %ul
+      - @projects.each do |project|
+        %li
+          =link_to project.title, project_path(project)
+
+=link_to new_project_path, class: 'btn btn-default' do
+  %span.glyphicon.glyphicon-plus
+  Добавить проект
