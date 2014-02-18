@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.all
+    @tasks = current_user.tasks.eager_load(:project)
   end
 
   def show
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description)
+      params.require(:task).permit(:title, :description, :project_id)
     end
 
 end

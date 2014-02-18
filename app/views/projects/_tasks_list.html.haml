@@ -1,0 +1,16 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title Список задач проекта:
+  .panel-body
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th.col-sm-2 Дата создания
+          %th.col-sm-2 Автор
+          %th.col-sm-8 Наименование
+      %tbody
+        - project.tasks.each do |task|
+          %tr
+            %td=l task.created_at, format: :short
+            %td= task.owner.name
+            %td=link_to task.title, task_path(task)

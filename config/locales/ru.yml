@@ -4,5 +4,6 @@ ru:
       task:
         title: Наименование
         description: Содержание
+        project_id: Проект
       project:
         title: Наименование

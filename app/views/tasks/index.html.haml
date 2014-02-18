@@ -4,12 +4,16 @@
   %thead
     %tr
       %th.col-sm-2 Дата создания
-      %th.col-sm-10 Наименование
+      %th.col-sm-8 Наименование
+      %th.col-sm-2 Проект
   %tbody
     - @tasks.each do |task|
       %tr
         %td=l task.created_at, format: :short
         %td=link_to task.title, task_path(task)
+        %td
+          - if task.project
+            = link_to task.project.title, project_path(task.project)
 =link_to new_task_path, class: 'btn btn-default' do
   %span.glyphicon.glyphicon-plus
   Добавить задачу

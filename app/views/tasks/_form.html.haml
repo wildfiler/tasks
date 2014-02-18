@@ -4,13 +4,28 @@
       %ul
         - @task.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    = f.label :title, class: 'control-label col-sm-2'
-    .col-sm-7
-      = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :description, class: 'control-label col-sm-2'
-    .col-sm-7
-      = f.text_area :description, rows: 15,  class: 'form-control wysihtml5'
-  .form-group
-    = f.submit class:'btn btn-default'
+  .row
+    .col-sm-9
+      .form-group
+        = f.label :title, class: 'control-label col-sm-2'
+        .col-sm-10
+          = f.text_field :title, class: 'form-control', autofocus: true
+      .form-group
+        = f.label :description, class: 'control-label col-sm-2'
+        .col-sm-10
+          = f.text_area :description, rows: 15,  class: 'form-control wysihtml5'
+    .col-sm-3
+      - if @task.new_record?
+        .form-group
+          = f.label :project_id, class: 'control-label'
+          %br
+          %br
+          = f.collection_select :project_id, current_user.projects, :id, :title, {prompt: 'Без проекта'}, {class: 'form-control project-selector', size: 2}
+      - else
+        - if @task.project
+          %b Проект:
+          %br
+          = link_to @task.project.title, @task.project
+  .row
+    .form-group
+      = f.submit class:'btn btn-default pull-right'
