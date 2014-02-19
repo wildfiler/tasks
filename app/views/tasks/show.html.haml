@@ -8,7 +8,7 @@
                                         class: 'btn btn-default btn-sm pull-right' do
         %span.glyphicon.glyphicon-trash
 .row
-  .col-sm-12
+  .col-sm-10
     - unless @task.is_owner? current_user
       %p
         %b Автор:
@@ -21,3 +21,19 @@
       = @task.human_state_name
     %p
       = raw @task.description
+  .col-sm-2
+    .btn-group
+      - case (@task.state)
+        - when 'new'
+          =link_to 'Начать', task_status_start_path(@task), method: :post, class: 'btn btn-primary'
+        - when 'in_work'
+          =link_to 'Завершить', task_status_finish_path(@task), method: :post, class: 'btn btn-primary'
+        - when 'finished', 'suspended'
+          =link_to 'Возобновить', task_status_reopen_path(@task), method: :post, class: 'btn btn-primary'
+      %button.btn.btn-primary.dropdown-toggle{data:{toggle:'dropdown'}}
+        %span.caret
+      %ul.dropdown-menu{role:'menu'}
+        %li=link_to 'Начать', task_status_start_path(@task), method: :post
+        %li=link_to 'Завершить', task_status_finish_path(@task), method: :post
+        %li=link_to 'Возобновить', task_status_reopen_path(@task), method: :post
+        %li=link_to 'Отложить', task_status_suspend_path(@task), method: :post

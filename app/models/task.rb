@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
   # states: new, in_work, suspended, finished
   state_machine :state, initial: :open do
     event :start do
-      transition :new => :in_work
+      transition to:  :in_work
     end
 
     event :suspend do
@@ -16,11 +16,11 @@ class Task < ActiveRecord::Base
     end
 
     event :reopen do
-      transition :suspended => :new
+      transition to: :new
     end
 
     event :finish do
-      transition :in_work => :finished
+      transition to: :finished
     end
   end
 

@@ -2,7 +2,21 @@ Tasks::Application.routes.draw do
 
   devise_for :users, path: 'auth'
   resources :users
-  resources :tasks
+  resources :tasks do
+    namespace :status, module: 'tasks', controller: 'status' do
+      post 'reopen'
+      post 'start'
+      post 'suspend'
+      post 'finish'
+    end
+  end
+  # namespace :tasks, controller: 'status' do
+  #   post 'new'
+  #   post 'start'
+  #   post 'suspend'
+  #   post 'finish'
+  # end
+
   resources :projects do
     post 'add_user'
     delete 'delete_user/:id', action: 'delete_user', as: 'delete_user'
