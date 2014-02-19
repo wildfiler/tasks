@@ -4,4 +4,8 @@ class Task < ActiveRecord::Base
 
   validates :title, presence: true
   validates :owner, presence: true
+
+  def is_owner?(user)
+    self.owner_id == user.id
+  end
 end

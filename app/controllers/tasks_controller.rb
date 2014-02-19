@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :is_own_task?, only: [:edit, :update, :destroy]
+  before_action :is_project_member?, only: [:show]
 
   def index
     @tasks = current_user.tasks.eager_load(:project)
@@ -42,7 +44,17 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = current_user.tasks.find(params[:id])
+      @task = Task.find(params[:id])
+    end
+
+    def is_own_task?
+      redirect_to(tasks_path, alert: 'Нет доступа!') unless @task.is_owner?(current_user)
+    end
+
+    def is_project_member?
+      if @task.project and not @task.project.users.include?(current_user)
+        redirect_to tasks_path, alert: 'Нет доступа!'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
