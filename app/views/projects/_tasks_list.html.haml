@@ -9,8 +9,8 @@
           %th.col-sm-2 Автор
           %th.col-sm-8 Наименование
       %tbody
-        - project.tasks.each do |task|
+        - tasks.each do |task|
           %tr
             %td=l task.created_at, format: :short
-            %td= task.owner.name
+            %td=task.owner.name
             %td=link_to task.title, task_path(task)

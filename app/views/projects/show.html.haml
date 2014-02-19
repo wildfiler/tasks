@@ -1,7 +1,7 @@
 .page-title
   %h1
     =@project.title
-    - if @project.owner == current_user
+    - if @project.is_owner?(current_user)
       =link_to edit_project_path(@project), class: 'btn btn-default btn-sm pull-right' do
         %span.glyphicon.glyphicon-pencil
       =link_to project_path(@project), data: {confirm: 'Вы точно хотите удалить этот проект?'}, method: :delete,
@@ -10,6 +10,6 @@
 %br
 .row
   .col-sm-8
-    = render partial: 'tasks_list', locals: {project: @project}
+    = render partial: 'tasks_list', locals: {tasks: @tasks}
   .col-sm-4
     = render partial: 'users_list', locals: {project: @project}

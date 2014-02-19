@@ -6,10 +6,10 @@
       - project.users.each do |user|
         %li
           = user.name
-          - if (@project.owner == current_user) and (project.owner != user)
+          - if project.is_owner?(current_user) and not project.is_owner?(user)
             = link_to project_delete_user_path(project, user), data: {confirm: "Вы точно хотите удалить пользователя #{user.name} из проекта?"}, method: :delete, class: 'btn btn-default btn-xs' do
               %span.glyphicon.glyphicon-trash
-    - if project.owner == current_user
+    - if project.is_owner? current_user
       %p
         = form_tag(project_add_user_path(project), class: 'form-inline') do
           = label_tag :email
