@@ -5,5 +5,13 @@ ru:
         title: Наименование
         description: Содержание
         project_id: Проект
+        state: Статус
       project:
         title: Наименование
+    state_machines:
+      task:
+        states:
+          new: Новая
+          in_work: В работе
+          suspended: Отложена
+          finished: Завершена

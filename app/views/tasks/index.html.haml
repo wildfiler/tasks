@@ -4,8 +4,9 @@
   %thead
     %tr
       %th.col-sm-2 Дата создания
-      %th.col-sm-8 Наименование
+      %th.col-sm-7 Наименование
       %th.col-sm-2 Проект
+      %th.col-sm-1 Статус
   %tbody
     - @tasks.each do |task|
       %tr
@@ -14,6 +15,7 @@
         %td
           - if task.project
             = link_to task.project.title, project_path(task.project)
+        %td= task.human_state_name
 =link_to new_task_path, class: 'btn btn-default' do
   %span.glyphicon.glyphicon-plus
   Добавить задачу

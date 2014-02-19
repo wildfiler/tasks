@@ -7,10 +7,17 @@
       =link_to task_path(@task), confirm: 'Вы точно хотите удалить эту задачу?', method: :delete,
                                         class: 'btn btn-default btn-sm pull-right' do
         %span.glyphicon.glyphicon-trash
-
-%p
-  Создано: #{l @task.created_at, format: :long}
-%p
-  Содержание:
-  %br
-  = raw @task.description
+.row
+  .col-sm-12
+    - unless @task.is_owner? current_user
+      %p
+        %b Автор:
+        = @task.owner.name
+    %p
+      %b Создано:
+      = l @task.created_at, format: :long
+    %p
+      %b Статус:
+      = @task.human_state_name
+    %p
+      = raw @task.description
