@@ -7,10 +7,12 @@
         %tr
           %th.col-sm-2 Дата создания
           %th.col-sm-2 Автор
-          %th.col-sm-8 Наименование
+          %th.col-sm-6 Наименование
+          %th.col-sm-1 Статус
       %tbody
         - tasks.each do |task|
           %tr
             %td=l task.created_at, format: :short
             %td=task.owner.name
             %td=link_to task.title, task_path(task)
+            %td=task.human_state_name
