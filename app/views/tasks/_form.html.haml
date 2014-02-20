@@ -26,7 +26,7 @@
               = Task.human_state_name(state_sym)
       .form-group
         = f.label :project_id, class: 'control-label'
-        = f.collection_select :project_id, current_user.projects, :id, :title, {prompt: 'Без проекта'}, {class: 'form-control project-selector', size: 2}
+        = f.collection_select :project_id, current_user.projects, :id, :title, {include_blank: 'Без проекта'}, {class: 'form-control'}
   .row
     .form-group
       = f.submit class:'btn btn-default pull-right'
