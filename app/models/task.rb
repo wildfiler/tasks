@@ -1,4 +1,6 @@
 class Task < ActiveRecord::Base
+  acts_as_paranoid
+
   belongs_to :owner, class_name: 'User'
   belongs_to :project
 
