@@ -13,8 +13,7 @@ describe Tasks::StatusController do
   let(:task){create :task, project: project, state: state, owner: owner}
   let(:state){:new}
 
-  describe do
-    # let(:action){:reopen}
+  context do
     before :each do
       post action, task_id: task.id
       task.reload
@@ -50,7 +49,42 @@ describe Tasks::StatusController do
   end
 
   describe "access rights for" do
-    %w(reopen start suspend finish).each do |action|
+    describe "POST finish" do
+      it 'redirect to project if user is project member' do
+        post :finish, task_id: task.id
+        expect(response).to redirect_to(project_path(project))
+      end
+
+      describe 'if user is not in project' do
+        let(:project){create :project}
+
+        it 'redirect to tasks' do
+          post :finish, task_id: task.id
+          expect(response).to redirect_to(tasks_path)
+        end
+      end
+
+      describe 'if task not in project' do
+        let(:project){nil}
+
+        describe 'and own task' do
+          let(:owner){user}
+
+          it 'redirect to tasks' do
+            post :finish, task_id: task.id
+            expect(response).to redirect_to(tasks_path)
+          end
+        end
+
+        describe 'and not own task' do
+          it 'redirect to tasks' do
+            post :finish, task_id: task.id
+            expect(response).to redirect_to(tasks_path)
+          end
+        end
+      end
+    end
+    %w(reopen start suspend).each do |action|
       describe "POST #{action}" do
         it 'redirect to task if user is project member' do
           post action, task_id: task.id

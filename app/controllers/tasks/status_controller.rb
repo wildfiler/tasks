@@ -15,7 +15,11 @@ class Tasks::StatusController < ApplicationController
 
   def finish
     @task.finish
-    redirect_to task_path(@task)
+    if @task.project
+      redirect_to project_path(@task.project)
+    else
+      redirect_to tasks_path
+    end
   end
 
   def suspend
