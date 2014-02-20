@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   validates :owner, presence: true
 
   # states: new, in_work, suspended, finished
-  state_machine :state, initial: :open do
+  state_machine :state, initial: :new do
     event :start do
       transition to:  :in_work
     end

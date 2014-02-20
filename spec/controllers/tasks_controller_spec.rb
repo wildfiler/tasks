@@ -37,4 +37,19 @@ describe TasksController do
       end
     end
   end
+
+  describe 'GET new' do
+    before :each do
+      get :new
+    end
+    it 'assigns new to task state' do
+      expect(assigns(:task).state?(:new)).to be_true
+    end
+    it 'responds with 200' do
+      expect(response.status).to eq(200)
+    end
+    it 'assigns a new task as @task' do
+      expect(assigns(:task)).to  be_a_new(Task)
+    end
+  end
 end
