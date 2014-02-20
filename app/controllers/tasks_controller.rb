@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = current_user.tasks.new
+    @task = current_user.tasks.new(project_id: params[:project_id])
   end
 
   def edit
@@ -22,7 +22,11 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      redirect_to @task, notice: 'Задача успешно добавлена.'
+      if @task.project
+        redirect_to @task.project, notice: 'Задача успешно добавлена.'
+      else
+        redirect_to tasks_path, notice: 'Задача успешно добавлена.'
+      end
     else
       render action: 'new'
     end

@@ -10,6 +10,6 @@
 %br
 .row
   .col-sm-8
-    = render partial: 'tasks_list', locals: {tasks: @tasks}
+    = render partial: 'tasks_list', locals: {tasks: @tasks, project: @project}
   .col-sm-4
     = render partial: 'users_list', locals: {project: @project}

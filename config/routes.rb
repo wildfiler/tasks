@@ -20,6 +20,7 @@ Tasks::Application.routes.draw do
   resources :projects do
     post 'add_user'
     delete 'delete_user/:id', action: 'delete_user', as: 'delete_user'
+    get 'new_task' => 'tasks#new'
   end
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
