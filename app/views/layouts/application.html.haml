@@ -15,10 +15,6 @@
             = render partial: 'admin_menu'
         = render partial: 'login_items'
   .container
-    - flash.each do |type, message|
-      - unless message.blank?
-        = content_tag :div, message, class: "alert #{ bootstrap_class_for(type) }" do
-          %button{class: 'close', data:{dismiss:'alert'}} x
-          = message
     = yield
+  .notifications.bottom-right{data: {flash: flash_message(flash).to_json} }
 
