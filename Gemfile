@@ -43,6 +43,7 @@ group :development, :test do
   gem 'factory_girl', '~> 4.4.0'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'timecop'
 end
 
 group :production do
