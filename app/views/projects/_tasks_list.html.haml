@@ -6,18 +6,19 @@
         %span.glyphicon.glyphicon-plus
         Добавить задачу
 
-  .panel-body
-    %table.table.table-striped.table-hover
-      %thead
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        %th.col-sm-2 Автор
+        %th Наименование
+        %th.col-sm-1 Статус
+        %th.col-sm-2 Cоздано
+        %th.col-sm-2 Завершено
+    %tbody
+      - tasks.each do |task|
         %tr
-          %th.col-sm-2 Дата создания
-          %th.col-sm-2 Автор
-          %th.col-sm-6 Наименование
-          %th.col-sm-1 Статус
-      %tbody
-        - tasks.each do |task|
-          %tr
-            %td=l task.created_at, format: :short
-            %td=task.owner.name
-            %td=link_to task.title, task_path(task)
-            %td=task.human_state_name
+          %td=task.owner.name
+          %td=link_to task.title, task_path(task)
+          %td=task.human_state_name
+          %td=task.when_created
+          %td=task.when_finished

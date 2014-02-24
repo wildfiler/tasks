@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220102944) do
+ActiveRecord::Schema.define(version: 20140221092530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140220102944) do
     t.integer  "project_id"
     t.string   "state",       default: "new"
     t.datetime "deleted_at"
+    t.datetime "finished_at"
   end
 
   add_index "tasks", ["deleted_at"], name: "index_tasks_on_deleted_at", using: :btree
