@@ -8,6 +8,11 @@ class TasksController < ApplicationController
     @tasks = current_user.tasks.eager_load(:project)
   end
 
+  def tasks_without_project
+    tasks = current_user.tasks.where(project_id: nil)    
+    render partial: 'tasks_without_project', locals: {tasks: tasks}
+  end
+
   def show
   end
 

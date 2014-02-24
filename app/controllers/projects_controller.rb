@@ -73,6 +73,11 @@ class ProjectsController < ApplicationController
     end    
   end
 
+  def tasks
+    project = current_user.projects.find(params[:project_id])
+    render partial:'projects/tasks/list', locals: {project: project}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project

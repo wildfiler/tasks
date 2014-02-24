@@ -1,0 +1,17 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Все задачи:
+      =link_to new_task_path, class: 'btn btn-default btn-xs pull-right' do
+        %span.glyphicon.glyphicon-plus
+        Добавить задачу    
+  %table.table.table-striped.table-hover.hide-buttons
+    %thead
+      %tr
+        %th.col-sm-5 Наименование
+        %th.col-sm-2 Проект
+        %th.col-sm-1 Статус
+        %th.col-sm-2 Создано
+        %th.col-sm-2 Завершено
+    %tbody
+      = render partial: 'tasks', locals: {tasks: tasks}

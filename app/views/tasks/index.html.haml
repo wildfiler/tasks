@@ -1,26 +1,7 @@
 .page-header
   %h1 Список задач
-%table.table.table-striped.table-hover.hide-buttons
-  %thead
-    %tr
-      %th.col-sm-5 Наименование
-      %th.col-sm-2 Проект
-      %th.col-sm-1 Статус
-      %th.col-sm-2 Создано
-      %th.col-sm-2 Завершено
-  %tbody
-    - @tasks.each do |task|
-      %tr
-        %td
-          =link_to task.title, task_path(task)
-          =link_to edit_task_path(task), class:'btn btn-xs' do
-            %span.glyphicon.glyphicon-pencil
-        %td
-          - if task.project
-            =link_to task.project.title, project_path(task.project)
-        %td=task.human_state_name
-        %td=task.when_created
-        %td=task.when_finished
-=link_to new_task_path, class: 'btn btn-default pull-right' do
-  %span.glyphicon.glyphicon-plus
-  Добавить задачу
+.row-fluid
+  .col-sm-10.task-list
+    = render partial: 'task_list', locals: { tasks: @tasks }
+  .col-sm-2.projects-list
+    = render partial: 'projects_list'

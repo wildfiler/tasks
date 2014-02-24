@@ -9,6 +9,9 @@ Tasks::Application.routes.draw do
       post 'suspend'
       post 'finish'
     end
+    collection do
+      get 'without_project', action: 'tasks_without_project'
+    end
   end
   # namespace :tasks, controller: 'status' do
   #   post 'new'
@@ -21,6 +24,7 @@ Tasks::Application.routes.draw do
     post 'add_user'
     delete 'delete_user/:id', action: 'delete_user', as: 'delete_user'
     get 'new_task' => 'tasks#new'
+    get 'tasks'
   end
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.

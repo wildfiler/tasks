@@ -1,0 +1,7 @@
+%ul.nav.nav-pills.nav-stacked
+  %li.active=link_to 'Все задачи', tasks_path
+  %li.project-link=link_to 'Без проектов', without_project_tasks_path
+  - current_user.own_projects.each do |project|
+    %li.project-link=link_to project.title, project_tasks_path(project)
+  - current_user.anothers_projects.each do |project|
+    %li.project-link=link_to project.title, project_tasks_path(project)
