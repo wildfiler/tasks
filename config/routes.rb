@@ -9,16 +9,13 @@ Tasks::Application.routes.draw do
       post 'suspend'
       post 'finish'
     end
-    collection do
-      get 'without_project', action: 'tasks_without_project'
-    end
   end
-  # namespace :tasks, controller: 'status' do
-  #   post 'new'
-  #   post 'start'
-  #   post 'suspend'
-  #   post 'finish'
-  # end
+
+  namespace :task_list, module: nil, controller: 'task_list' do
+    get 'all'
+    get 'without_project'
+    get 'project/:id', action: 'project'
+  end
 
   resources :projects do
     post 'add_user'
@@ -26,6 +23,7 @@ Tasks::Application.routes.draw do
     get 'new_task' => 'tasks#new'
     get 'tasks'
   end
+
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

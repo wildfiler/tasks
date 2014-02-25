@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_action :is_project_member?, only: [:show]
 
   def index
-    @tasks = current_user.tasks.eager_load(:project)
+    @tasks = current_user.all_tasks
   end
 
   def tasks_without_project

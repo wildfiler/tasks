@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def anothers_projects
     self.projects.where.not(projects:{owner_id: self.id})
   end
+
+  def all_tasks
+    Task.all_for_user(self)
+  end
 end

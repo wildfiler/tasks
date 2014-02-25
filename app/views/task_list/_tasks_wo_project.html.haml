@@ -1,28 +1,23 @@
 .panel.panel-default
   .panel-heading
     %h3.panel-title
-      Список задач проекта:
-      =link_to project_new_task_path(project_id: project.id), class: 'btn btn-default pull-right btn-xs' do
-        %span.glyphicon.glyphicon-plus
-        Добавить задачу
-
+      &nbsp
+      = content_for :task_list_header
   %table.table.table-striped.table-hover.hide-buttons
     %thead
       %tr
-        %th.col-sm-2 Автор
-        %th Наименование
+        %th.col-sm-7 Наименование
         %th.col-sm-1 Статус
-        %th.col-sm-2 Cоздано
+        %th.col-sm-2 Создано
         %th.col-sm-2 Завершено
     %tbody
       - tasks.each do |task|
         %tr
-          %td=task.owner.name
           %td
             =link_to task.title, task_path(task)
             - if task.is_owner?(current_user)
               =link_to edit_task_path(task), class:'btn btn-xs' do
-                %span.glyphicon.glyphicon-pencil            
+                %span.glyphicon.glyphicon-pencil
           %td=task.human_state_name
           %td=task.when_created
           %td=task.when_finished

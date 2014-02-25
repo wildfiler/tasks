@@ -31,6 +31,7 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'bootstrap-wysihtml5-rails'
 gem 'state_machine'
 gem 'paranoia', '~> 2.0'
+gem 'squeel'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

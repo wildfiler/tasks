@@ -6,6 +6,13 @@ class Task < ActiveRecord::Base
 
   default_scope {order(created_at: :desc)}
 
+  scope :all_for_user, ->(user) {
+    project_ids = user.projects.pluck(:id)
+    return Task.includes(:project).where{((project_id == nil) & (owner_id == my{user.id}) ) | (project_id.in(project_ids))}    
+  }
+
+  scope :without_project, -> {where(project_id: nil)}
+
   validates :title, presence: true
   validates :owner, presence: true
 
