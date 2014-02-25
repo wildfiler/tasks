@@ -8,11 +8,6 @@ class TasksController < ApplicationController
     @tasks = current_user.all_tasks
   end
 
-  def tasks_without_project
-    tasks = current_user.tasks.where(project_id: nil)    
-    render partial: 'tasks_without_project', locals: {tasks: tasks}
-  end
-
   def show
   end
 
