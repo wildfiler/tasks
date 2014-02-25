@@ -1,7 +1,8 @@
 .page-header
   %h1 Список задач
 .row-fluid
-  .col-sm-10.task-list
-    = render partial: 'task_list', locals: { tasks: @tasks }
   .col-sm-2.projects-list
     = render partial: 'projects_list'
+  .col-sm-10.task-list
+    = render partial: 'task_list', locals: { tasks: @tasks }
+    
