@@ -10,7 +10,7 @@
         %th.col-sm-1 Статус
         %th.col-sm-2 Создано
         %th.col-sm-2 Завершено
-    %tbody
+    %tbody.rowlink{'data-link'=>'row'}
       - tasks.each do |task|
         %tr
           %td

@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require bootstrap-wysihtml5/b3
 //= require bootstrap-notify
+//= require bootstrap-rowlink
 //= require_tree .

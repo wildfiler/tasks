@@ -13,17 +13,17 @@
         %th.col-sm-1 Статус
         %th.col-sm-2 Создано
         %th.col-sm-2 Завершено
-    %tbody
-    - tasks.each do |task|
-      %tr
-        %td
-          =link_to task.title, task_path(task)
-          - if task.is_owner?(current_user)
-            =link_to edit_task_path(task), class:'btn btn-xs' do
-              %span.glyphicon.glyphicon-pencil
-        %td
-          - if task.project
-            =link_to task.project.title, project_path(task.project)
-        %td=task.human_state_name
-        %td=task.when_created
-        %td=task.when_finished
+    %tbody.rowlink{'data-link'=>'row'}
+      - tasks.each do |task|
+        %tr
+          %td
+            =link_to task.title, task_path(task)
+            - if task.is_owner?(current_user)
+              =link_to edit_task_path(task), class:'btn btn-xs' do
+                %span.glyphicon.glyphicon-pencil
+          %td.rowlink-skip
+            - if task.project
+              =link_to task.project.title, project_path(task.project)
+          %td=task.human_state_name
+          %td=task.when_created
+          %td=task.when_finished
