@@ -17,10 +17,10 @@
       - tasks.each do |task|
         %tr
           %td
-            =link_to task.title, task_path(task)
             - if task.is_owner?(current_user)
-              =link_to edit_task_path(task), class:'btn btn-xs pull-right' do
+              =link_to edit_task_path(task), class:'pull-right button' do
                 %span.glyphicon.glyphicon-pencil
+            =link_to task.title, task_path(task)
           %td.rowlink-skip
             - if task.project
               =link_to task.project.title, project_path(task.project)
