@@ -1,0 +1,8 @@
+MetricFu::Configuration.run do |config|
+  coverage_file = File.expand_path("coverage/rcov/rcov.txt", Dir.pwd)
+  config.add_metric(:rcov)
+  config.add_graph(:rcov)
+  config.configure_metric(:rcov, {:external => coverage_file})
+  config.flay = { :dirs_to_flay => ['app', 'spec', 'lib'] }
+  config.cane = { no_doc: 'y', line_length: 120}
+end

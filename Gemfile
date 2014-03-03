@@ -33,6 +33,7 @@ gem 'state_machine'
 gem 'paranoia', '~> 2.0'
 gem 'squeel'
 
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -52,6 +53,16 @@ group :production do
 end
 
 gem 'newrelic_rpm'
+
+group :development do
+  gem 'metric_fu'
+  gem 'flay-haml'
+end
+
+group :test do
+  gem 'simplecov'
+  gem 'simplecov-rcov-text'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
