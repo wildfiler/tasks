@@ -94,7 +94,7 @@ class ProjectsController < ApplicationController
     end
 
     def check_owner
-      unless @project.owner == current_user
+      unless @project.is_owner?(current_user)
         redirect_to projects_path, error: 'Недостаточно прав!'
       end
     end
