@@ -1,7 +1,5 @@
 %ul.nav.nav-pills.nav-stacked
-  %li.project-link{class: ('active' if @project == :all) }=link_to 'Все задачи', tasks_path
-  %li.project-link{class: ('active' if @project == :empty) }=link_to 'Без проектов', without_project_tasks_path
-  - current_user.own_projects.each do |project|
-    %li.project-link{class: ('active' if @project == project) }=link_to project.title, project_tasks_path(project)
-  - current_user.anothers_projects.each do |project|
-    %li.project-link{class: ('active' if @project == project) }=link_to project.title, project_tasks_path(project)
+  =project_link_to (@project == :all), 'Все задачи', tasks_path
+  =project_link_to (@project == :empty), 'Без проектов', without_project_tasks_path
+  - current_user.projects_sorted.each do |project|
+    =project_link_to (@project == project), project.title, project_tasks_path(project)

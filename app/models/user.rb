@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     self.projects.where.not(projects:{owner_id: self.id})
   end
 
+  def projects_sorted
+    self.projects.order("(owner_id = #{self.id}) DESC")
+  end
+
   def all_tasks
     Task.all_for_user(self)
   end
