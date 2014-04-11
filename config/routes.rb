@@ -2,6 +2,9 @@ Tasks::Application.routes.draw do
 
   devise_for :users, path: 'auth'
   resources :users
+
+  get 'tasks/project/:project_id' => 'tasks#index_by_project', as: 'project_tasks'
+  get 'tasks/without_project' => 'tasks#index_wo_project', as: 'without_project_tasks'
   resources :tasks do
     namespace :status, module: 'tasks', controller: 'status' do
       post 'reopen'
