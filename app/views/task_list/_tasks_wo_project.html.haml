@@ -15,9 +15,9 @@
         %tr
           %td
             - if task.is_owner?(current_user)
-              =link_to edit_task_path(task), class:'button pull-right' do
-                %span.glyphicon.glyphicon-pencil
-            =link_to task.title, task_path(task)
+              =link_to task.title, edit_task_path(task)
+            - else 
+              =link_to task.title, task_path(task)
           %td=task.human_state_name
           %td=task.when_created
           %td=task.when_finished
