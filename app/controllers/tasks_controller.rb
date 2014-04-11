@@ -5,8 +5,22 @@ class TasksController < ApplicationController
   before_action :is_project_member?, only: [:show]
 
   def index
+    @project = :all
     @tasks = current_user.all_tasks
   end
+
+  def index_by_project
+    @project = current_user.projects.find(params[:project_id])
+    @tasks = @project.tasks
+    render :index
+  end
+
+  def index_wo_project
+    @project = :empty
+    @tasks = current_user.tasks.without_project
+    render :index
+  end
+
 
   def show
   end

@@ -2,14 +2,16 @@
   .panel-heading
     %h3.panel-title
       &nbsp
-      =link_to new_task_path, class: 'btn btn-default btn-xs pull-right' do
+      =link_to ([:all, :empty].include?(@project) ? new_task_path : project_new_task_path(@project) ),
+                class: 'btn btn-default btn-xs pull-right' do
         %span.glyphicon.glyphicon-plus
         Добавить задачу    
   %table.table.table-striped.table-hover.hide-buttons
     %thead
       %tr
-        %th.col-sm-5 Наименование
-        %th.col-sm-2 Проект
+        %th{class: (@project == :all ? 'col-sm-5' : 'col-sm-7')} Наименование
+        - if @project == :all
+          %th.col-sm-2 Проект
         %th.col-sm-1 Статус
         %th.col-sm-2 Создано
         %th.col-sm-2 Завершено
@@ -21,9 +23,10 @@
               =link_to task.title, edit_task_path(task)
             - else 
               =link_to task.title, task_path(task)
-          %td.rowlink-skip
-            - if task.project
-              =link_to task.project.title, project_path(task.project)
+          - if @project == :all
+            %td.rowlink-skip
+              - if task.project
+                =link_to task.project.title, project_path(task.project)
           %td=task.human_state_name
           %td=task.when_created
           %td=task.when_finished
