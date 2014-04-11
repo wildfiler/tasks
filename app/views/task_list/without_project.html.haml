@@ -1,5 +1,0 @@
-- content_for :task_list_header do
-  =link_to new_task_path, class: 'btn btn-default btn-xs pull-right' do
-    %span.glyphicon.glyphicon-plus
-    Добавить задачу
-=render partial: 'tasks_wo_project', locals: {tasks: @tasks}

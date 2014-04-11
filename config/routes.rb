@@ -14,12 +14,6 @@ Tasks::Application.routes.draw do
     end
   end
 
-  namespace :task_list, module: nil, controller: 'task_list' do
-    get 'all'
-    get 'without_project'
-    get 'project/:id', action: 'project'
-  end
-
   resources :projects do
     post 'add_user'
     delete 'delete_user/:id', action: 'delete_user', as: 'delete_user'
