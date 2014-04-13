@@ -66,7 +66,7 @@ class UsersController < ApplicationController
       if current_user.is_admin?
         params.require(:user).permit(:name, :role, :email, :password)
       else
-        params.require(:user).permit(:name, :role, :email)
+        params.require(:user).permit(:name, :email)
       end
     end
 end
