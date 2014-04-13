@@ -36,11 +36,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      if @task.project
-        redirect_to @task.project, notice: 'Задача успешно добавлена.'
-      else
-        redirect_to tasks_path, notice: 'Задача успешно добавлена.'
-      end
+      redirect_to tasks_path, notice: 'Задача успешно добавлена.'
     else
       render action: 'new'
     end
