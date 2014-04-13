@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.4'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -33,7 +33,6 @@ gem 'state_machine'
 gem 'paranoia', '~> 2.0'
 gem 'squeel'
 
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -55,13 +54,13 @@ end
 gem 'newrelic_rpm'
 
 group :development do
-  gem 'metric_fu'
+  gem 'metric_fu', '~> 4.10.0'
   gem 'flay-haml'
+  gem "rails_best_practices", '~> 1.15.2'
 end
 
 group :test do
   gem 'simplecov'
-  gem 'simplecov-rcov-text'
 end
 
 # Use ActiveModel has_secure_password
