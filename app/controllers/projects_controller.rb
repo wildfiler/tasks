@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
     @project.owner = current_user
     if @project.save
       @project.users << current_user
-      redirect_to @project, notice: 'Проект успешно создан.'
+      redirect_to tasks_path, notice: 'Проект успешно создан.'
     else
       render action: 'new'
     end
