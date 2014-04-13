@@ -10,11 +10,6 @@
 %br
 .row
   .col-sm-8
-    - content_for :task_list_header do
-      Список задач проекта:
-      =link_to project_new_task_path(@project), class: 'btn btn-default btn-xs pull-right' do
-        %span.glyphicon.glyphicon-plus
-        Добавить задачу
-    = render partial: 'task_list/tasks_wo_project', locals: {tasks: @tasks}
+    = render partial: 'tasks/tasks_list', locals: {tasks: @tasks, project: @project}
   .col-sm-4
     = render partial: 'users_list', locals: {project: @project}
