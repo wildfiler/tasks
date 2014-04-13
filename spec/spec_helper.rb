@@ -1,5 +1,5 @@
 require 'simplecov'
-require 'simplecov-rcov-text'
+require 'metric_fu/metrics/rcov/simplecov_formatter'
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   SimpleCov::Formatter::MetricFu
