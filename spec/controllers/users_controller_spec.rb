@@ -33,7 +33,7 @@ describe UsersController do
       end
     end
 
-    describe "POST create" do      
+    describe "POST create" do
       it "redirects to root" do
         post :create, {:user => attributes_for(:user)}
         expect(response).to redirect_to root_url
@@ -54,7 +54,7 @@ describe UsersController do
         delete :destroy, {:id => user.to_param}
         expect(response).to redirect_to root_url
       end
-    end    
+    end
   end
 
   describe 'for admin' do

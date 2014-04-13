@@ -18,6 +18,7 @@ describe Tasks::StatusController do
       post action, task_id: task.id
       task.reload
     end
+
     describe 'POST reopen' do
       let(:state){:in_work}
       let(:action){:reopen}
@@ -25,6 +26,7 @@ describe Tasks::StatusController do
         expect(task.state?(:new)).to be_true
       end
     end
+
     describe 'POST start' do
       let(:state){:new}
       let(:action){:start}
@@ -32,6 +34,7 @@ describe Tasks::StatusController do
         expect(task.state?(:in_work)).to be_true
       end
     end
+
     describe 'POST suspend' do
       let(:state){:new}
       let(:action){:suspend}
@@ -39,6 +42,7 @@ describe Tasks::StatusController do
         expect(task.state?(:suspended)).to be_true
       end
     end
+
     describe 'POST finish' do
       let(:state){:new}
       let(:action){:finish}
@@ -108,7 +112,7 @@ describe Tasks::StatusController do
 
             it 'redirect to task' do
               post action, task_id: task.id
-              expect(response).to redirect_to(task_path(task))      
+              expect(response).to redirect_to(task_path(task))
             end
           end
 

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :tasks, foreign_key: :owner_id
-  has_and_belongs_to_many :projects  
+  has_and_belongs_to_many :projects
 
   ROLES.each do |role|
     define_method "is_#{role}?" do

@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
 
   validates :title, presence: true, uniqueness: {scope: :owner }
-  
+
   def is_owner?(user)
     self.owner_id == user.id
   end

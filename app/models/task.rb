@@ -8,7 +8,9 @@ class Task < ActiveRecord::Base
 
   scope :all_for_user, ->(user) {
     project_ids = user.projects.pluck(:id)
-    return Task.includes(:project).where{((project_id == nil) & (owner_id == my{user.id}) ) | (project_id.in(project_ids))}    
+    tasks = Task.includes(:project)
+    tasks = tasks.where{((project_id == nil) & (owner_id == my{user.id}) ) | (project_id.in(project_ids))}
+    return tasks
   }
 
   scope :without_project, -> {where(project_id: nil)}

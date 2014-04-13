@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     def check_admin!
       unless current_user.is_admin?
         flash[:alert] = "Доступ запрещен!"
-        redirect_to root_url 
+        redirect_to root_url
       end
     end
 

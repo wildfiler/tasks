@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: [:show, :edit, :update, :destroy, :add_user, :delete_user]
-  before_action :check_owner, only: [:edit, :update, :destroy, :add_user, :delete_user] 
+  before_action :check_owner, only: [:edit, :update, :destroy, :add_user, :delete_user]
 
   def index
     @own_projects = current_user.own_projects
@@ -70,7 +70,7 @@ class ProjectsController < ApplicationController
       end
     else
       redirect_to @project, alert: 'Пользователь не существует'
-    end    
+    end
   end
 
   def tasks
