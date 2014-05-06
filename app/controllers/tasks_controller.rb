@@ -45,7 +45,6 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      #redirect_to @task, notice: 'Задача успешно обновлена.'
       redirect_to tasks_url, notice: 'Задача успешно обновлена.'
     else
       render action: 'edit'

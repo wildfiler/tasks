@@ -13,7 +13,6 @@ Tasks::Application.routes.draw do
       post 'suspend'
       post 'finish'
     end
-    
     resources :comments
   end
 
