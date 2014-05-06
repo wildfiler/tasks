@@ -1,0 +1,8 @@
+.row
+  .col-sm-12
+    %h3 Комментарии
+    -if @comments.any?
+      %ol.comments
+        =render @comments
+
+    

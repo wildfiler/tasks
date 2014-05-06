@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :tasks, foreign_key: :owner_id
   has_and_belongs_to_many :projects
-
+  has_many :comments, dependent: :destroy
+  
   ROLES.each do |role|
     define_method "is_#{role}?" do
       self.role == role

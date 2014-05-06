@@ -20,9 +20,9 @@
         %tr
           %td
             - if task.is_owner?(current_user)
-              =link_to task.title, edit_task_path(task)
-            - else 
-              =link_to task.title, task_path(task)
+              =link_to edit_task_path(task), class:'pull-right button' do
+                %span.glyphicon.glyphicon-pencil
+            =link_to task.title, task_path(task)
           - if @project == :all
             %td.rowlink-skip
               - if task.project

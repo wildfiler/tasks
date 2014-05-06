@@ -2,6 +2,7 @@ Tasks::Application.routes.draw do
 
   devise_for :users, path: 'auth'
   resources :users
+  resources :comments
 
   get 'tasks/project/:project_id' => 'tasks#index_by_project', as: 'project_tasks'
   get 'tasks/without_project' => 'tasks#index_wo_project', as: 'without_project_tasks'
@@ -12,6 +13,8 @@ Tasks::Application.routes.draw do
       post 'suspend'
       post 'finish'
     end
+    
+    resources :comments
   end
 
   resources :projects do

@@ -37,3 +37,11 @@
         %li=link_to 'Завершить', task_status_finish_path(@task), method: :post
         %li=link_to 'Возобновить', task_status_reopen_path(@task), method: :post
         %li=link_to 'Отложить', task_status_suspend_path(@task), method: :post
+=render '/comments/comments_list'
+=render '/comments/comment_form'
+
+
+
+
+
+
